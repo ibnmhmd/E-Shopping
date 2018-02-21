@@ -1,0 +1,162 @@
+<app-breadcrumbs></app-breadcrumbs>  
+    <section>
+        <div class="container">      
+          <div class="row">
+            <app-product-category></app-product-category>
+                  <div class="col-xs-12 col-sm-8 col-lg-8">
+                         <div *ngIf="orderError" class="alert alert-danger">
+                            <strong>Error ! Error Processing Your Order Please Fill all Inputs. </strong>
+                         </div>
+
+                         <div *ngIf="addressSet" class="alert alert-success">
+                            <strong>{{addressMessage}}</strong>
+                         </div>
+                        <a *ngIf="orderError" class="btn btn-block btn-warning" routerLink = '/'>Shop Now</a>                     
+                        <div class="row media">
+                               <!-- shipping info -->
+                               <div class="col-xs-12 col-sm-12">
+                                  <h3 class="text-center"> Shipping Information</h3>                              
+                              </div>
+                               <!--  end -->
+
+                               <!-- input fields -->
+                                <div class="col-xs-12 form-group">
+                                  <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <input type="text" class="form-control" placeholder="First Name" id="firstName" [(ngModel)] = "firstName" (change) ="changeEvent()">
+                                  </div>
+                                  <div class="col-xs-12 col-sm-12 col-md-6">
+                                      <input type="text" class="form-control" placeholder="Last Name" id="lastName" [(ngModel)] = "lastName">
+                                  </div>
+                                </div>
+
+                                <div class="col-xs-12 form-group">
+                                  <div class="col-xs-12 col-sm-12 col-md-6">
+                                      <input type="text" class="form-control" placeholder="Phone Number" id="phone" [(ngModel)] = "phone" ><span id="errmsg"></span>
+                                  </div>
+                                  <div class="col-xs-12 col-sm-12 col-md-6">
+                                      <input type="text" class="form-control" value = "United Arab Emirates" [disabled] ="disable">
+                                  </div>
+                               </div>
+
+
+                               <div class="col-xs-12 form-group">
+                                  <div class="col-xs-12 col-sm-12 col-md-6">
+                                      <select name="" id="" class="form-control" id="city" [(ngModel)] = "city">>
+                                         <option value="0"> -- Select City -- </option>
+                                         <option value="Dubai"> Dubai</option>
+                                         <option value="Abu Dhabi">Abu Dhabi</option>
+                                         <option value="Sharjah">Sharjah</option>
+                                      </select>
+                                  </div>
+                                  <div class="col-xs-12 col-sm-12 col-md-6">
+                                      <input type="text" class="form-control" placeholder="Address" id="address" [(ngModel)] = "address">
+                                  </div>
+                               </div>
+
+
+                               <div class="col-xs-12 form-group radio-group">
+                                   <input type="radio" name = "address" class="radio-button" checked="checked" value="Home"><label class="radio-button" >Deliver To Home</label>
+                                   <input type="radio"  name = "address" class="radio-button"  value="Office"><label class="radio-button">Deliver To Office</label>
+                                   <a class="btn btn-block btn-warning" (click) ="setInformation()"> Set Information</a>
+                               </div>     
+                       </div>
+                    <!-- ends -->
+                       <!-- address -->
+                       <div class="row media summary-block" *ngIf= "showAddressSet">
+                          <!-- shipping info -->
+                          <div class="col-xs-12 col-sm-12">
+                             <h3 class="text-center">Order Summary</h3>                              
+                         </div>
+                          <!--  end -->
+                          <div class="col-xs-12">
+
+                             
+                              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 setAddress addressBlock">                             
+                                  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <span>{{ storedAddress?.firstName }} - {{ storedAddress?.lastName }}</span>
+                                  </div>
+                                  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <span>United Arab Emirates</span>
+                                  </div>
+                                  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <span>{{ storedAddress?.city }}</span>
+                                  </div>
+                                  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <span>{{ storedAddress?.phoneNumber }}</span>
+                                  </div>
+                                  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <span>{{storedAddress?.address }}</span>
+                                  </div>
+                                  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <span>Deliver To: {{storedAddress?.delivery }}</span>
+                                  </div>
+
+                                  <span class="remove" (click) = "removeAddress()"><i (click) = "removeAddress()" class="fa fa-trash move" aria-hidden="true" ></i></span> 
+                                  <span class="edit pull-right" (click) = "editAddress()"><i (click) = "editAddress()" class="fa fa-pencil-square-o move" aria-hidden="true" ></i></span> 
+                             </div>
+
+                             
+                              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 setAddress">
+                                <h5> Items(s) : {{items}}</h5>
+                                <h5> VAT (5%): {{VAT}}</h5>
+                                <h5> Grand Total : {{grandTotal}}</h5>
+                             </div>
+                          </div>
+                          
+                  </div>
+                       <!-- ends -->
+
+                       <!-- payment information -->
+                       <div class="row media" *ngIf = "showAddressSet">
+                          <!-- shipping info -->
+                          <div class="col-xs-12 col-sm-12">
+                             <h3 class="text-center"> Payment Information</h3>                              
+                         </div>
+                          <!--  end -->
+
+                          <!-- payment input fields -->
+                           <div class="col-xs-12 form-group">
+                             <div class="col-xs-12 col-sm-12 col-md-12">
+                               <input type="text" class="form-control" placeholder="CARD NUMBER" id="cardNumber" minlength="12" maxlength="12" [(ngModel)] = "cardNumber" (keydown) = "setOrder()"><span id="cardmsg"></span>
+                             </div>                        
+                           </div>
+
+                           <div class="col-xs-12 form-group">
+                             <div class="col-xs-12 col-sm-12 col-md-2">
+                                 <input type="text" class="form-control monthPicker"
+                                  placeholder="MONTH" minlength="2" maxlength="2"  [(ngModel)] = "month"  id="month" name="month" (keydown) = "setOrder()"><span id="monthmsg"></span>
+                             </div>
+                              <div class="col-xs-4 col-sm-4 col-md-4">
+                                  <input type="text" class="form-control monthPicker"
+                                   placeholder="YEAR"  [(ngModel)] = "year" minlength="4" maxlength="4" id="year" (keydown) = "setOrder()"><span id="yearmsg"></span>
+                              </div>
+
+                              <div class="col-xs-4 col-sm-4 col-md-2">
+                                  <input type="text" class="form-control" minlength="3" maxlength="3" (keydown) = "setOrder()" placeholder="CVV" id="cvv" [(ngModel)] = "cvv" id="cvv"><span id="cvvmsg"></span>
+                                
+                              </div>
+
+                              <div class="col-xs-4 col-sm-4 col-md-2">                              
+                                  <h5><span class="visa"><i class="fa fa-check" aria-hidden="true"></i>
+                                    <i class="fa fa-cc-visa" aria-hidden="true"></i></span></h5> 
+
+                                    <!-- master -->
+                                    <h5> <span class="visa"><i class="fa fa-check" aria-hidden="true"></i>
+                                      <i class="fa fa-cc-mastercard" aria-hidden="true"></i></span></h5>
+                              </div>  
+                           </div> 
+                            <!-- place order -->
+                             <div class="col-xs-12 col-sm-12 placeOrder">
+                                <a class="btn btn-block btn-warning " (click) ="placeOrder()" > Place Order</a>                           
+                            </div>
+                             <!--  end -->
+                          
+                  </div>
+                       <!-- ends -->
+                 </div>
+                   
+                    <div class="clearfix"></div>
+           </div>
+          
+       </div>
+   </section>

@@ -1,0 +1,143 @@
+<app-breadcrumbs [path] = 'categoryName'></app-breadcrumbs>
+<section>
+    <div class="container">
+      <div class="row">
+        <app-product-category></app-product-category>
+           <div class="col-xs-12 col-sm-8 col-lg-8">
+               <div class="row">
+                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                   <h2 class="text-center text-underline">{{categoryName | uppercase}}</h2></div>
+               </div>
+
+                <!-- no items info -->
+                <div *ngIf="noItems" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center media media-bold">
+                    <div class="col-xs-12"><h5 class="media-bold noResult"><i>Sorry no products found for catgeory ( {{categoryName}} ).</i></h5></div>
+                    <div class="col-xs-12"><h5 class="media-bold"><i>Please browse other categories using the button below.</i></h5></div>
+
+                    <!-- checkout button -->
+                    <div class="col-xs-12 checkout"><a class="btn btn-block btn-warning " routerLink = "/"><i class="fa fa-chrome" aria-hidden="true"></i> Browse other categories</a></div>
+                    <!-- checkout button ends -->
+                </div>
+                <!-- info ends -->
+
+              <div class="row" *ngIf="!noItems">
+                  <div class="col-sm-4 hoverClassParent porductHolder" *ngFor = "let product of products">
+                      <div class="col-item" >
+                          <div class="photo">             
+                              <a [routerLink] = "['/full-view/',categoryName, product.guid]"><img  src="{{product.thumbnail_img}}" class="img-responsive" alt="a" /></a>
+                          </div>
+                          <div class="info">
+                              <div class="row">
+                                  <div class="price col-sx-12 col-sm-12 col-md-12 col-lg-12">
+                                      <h5 class=" title"> {{ product.cat_title }}</h5>                                                  
+                                  </div>
+                                 
+                                  <div class="price col-sx-12 col-sm-12 col-md-12 col-lg-1">
+                                      <h5 class="text-center price"> AED{{ product.price }} </h5>                                                    
+                                  </div>
+                                </div>
+
+                                  <div class="separator clear-left">
+                                      <p class="btn-add">
+                                          <i class="fa fa-shopping-cart hoverClass" [routerLink] = "['/full-view/',categoryName, product.guid]"></i><a class="hidden-sm hoverClass" [routerLink] = "['/full-view/',categoryName, product.guid]">Add to cart</a></p>
+                                      <p class="btn-details">
+                                          <i class="fa fa-eye hoverClass" (click) ="quickView(product)"></i><a class="hidden-sm hoverClass" (click) ="quickView(product, product.quantity)">View</a></p>
+                                  </div>
+                                 <div class="clearfix">
+                              </div>
+                          </div>
+                      </div>
+                  </div>   
+              </div>
+
+          </div>
+      </div>
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="quickView" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="mmodal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel"> Item Quick View
+
+            <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </h4>
+          
+        </div>
+        <div class="modal-body">
+              <div class="row">
+                   <div class="col-xs-12">
+                            <div *ngIf = "qtyNotSelected" class="alert alert-danger">
+                                <strong>OOPS ! Please choose quantity before adding this item to the cart. </strong>
+                            </div>
+
+                            <div *ngIf="itemAdded" class="alert alert-success">
+                                    <strong>Item has been successfully added to the cart.</strong>
+                                </div>
+                  </div>
+                   <div class="col-xs-12 col-sm-12 col-md-6">
+                     <figure>
+                         <a href="">
+                            <img src= "{{img}}" class="img-responsive">
+                        </a>
+                    </figure>
+                  </div>
+                     <div class="col-xs-12 col-sm-12 col-md-6">
+                        <div class="col-xs-12 info">
+                            <h3 class="text-uppercase bold">{{name}}</h3>
+                            <h4 class="bold">AED {{price}}&nbsp; &nbsp; <span class="stock">In Stock</span></h4>
+                            <h4>{{model}}</h4>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <select class="form-control view-drop" [(ngModel)] = "selectedQty">
+                                    <option value = "0">-- Select Quantity --</option>
+                                    <option value = "{{q}}" *ngFor ="let q of quantity">{{q}}</option>                              
+                                </select>
+                            </div>
+                        </div>
+                       
+                        <div class="col-xs-12">
+                            <a class="btn btn-block btn-warning" (click) = "addToCart()"><i (click) = "addToCart()" class="fa fa-shopping-bag" aria-hidden="true"></i> Add to cart </a>
+                        </div>
+                        <div class=" col-xs-12 name text-center padding-bottom"><i class="fa fa-truck" aria-hidden="true"></i> <span class="truck">Delivery :</span>
+                            Order in the next 07 hrs 23 mins and receive it in  Dubai
+                            by Wed, Jan 10. </div>     
+                   </div>
+                        <!-- tabs -->
+                        <div class="col-xs-12 name-price clearfix no-border-top">
+                            <div id="exTab3" class="">	
+                                <ul  class="nav nav-pills">
+                                      <li class="active">
+                                        <a  href="#1b" data-toggle="tab">Overview</a>
+                                      </li>
+                                      <li><a href="#2b" data-toggle="tab">Description</a>
+                                      </li>
+                                     
+                                    </ul>
+                                
+                                      <div class="tab-content clearfix">
+                                        <div class="tab-pane active" id="1b">
+                                          <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non alias, accusantium nulla commodi minus quidem ullam amet saepe consequatur quibusdam nesciunt </h5>
+                                        </div>
+                                        <div class="tab-pane" id="2b">
+                                          <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta doloribus, repudiandae repellendus vero excepturi velit odit eveniet.</h5>
+                                        </div>
+                                       
+                                      </div>
+                               </div>
+                     </div>
+          </div>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <!-- ends -->

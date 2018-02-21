@@ -1,0 +1,47 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+           <h3 class="text-uppercase text-center">Sign Up</h3>
+          <div class="wrapper">
+            <div class="inner-box">
+                <form  class="">
+                    <div *ngIf="created" class="alert alert-success text-center">
+                        <strong >Congrats!  Account has been successfully created . </strong>
+                     </div>
+
+                     <div class="form-group">
+                      <label>Your name</label>
+                      <input name = "name" [(ngModel)]="name" type="text" class="form-control" id= "name" placeholder="Your name here" maxlength="100">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your email</label>
+                        <input name="email" [(ngModel)]="email" type="text" class="form-control" id="email" placeholder="Email here">
+                    </div>
+
+                      <div class="form-group">
+                        <label>Password</label>
+                        <input maxlength="20" name="pass" [(ngModel)]="pass" type="password" class="form-control" placeholder="Atleast 6 characters" id="pass" minlength="6" placeholder="**************">
+                      </div>
+
+                      <div class="form-group">
+                          <label>Re-enter password</label>
+                          <input maxlength="20" name="repass" [(ngModel)]="repass" type="password" class="form-control" id="re-pass" placeholder="*************">
+                     </div> 
+                     <div *ngIf="passwordError" class="alert alert-danger text-center">
+                        <strong >{{errorLog}} </strong>
+                     </div>
+                     <a class="btn btn-block btn-warning text-center text-uppercase" style="color: white; font-weight: bold" (click)="createAccount()"> create account</a>
+                  </form>
+
+                  <p class="note">By creating an account, you agree to our <a>Conditions of Use</a> and <a>Privacy Notice</a>.</p>
+
+                  <h5 class ="text-center text-uppercase have-account">already have an account ? <a (click) = "open()" class="sign-in" id="in"> sign in </a></h5>
+            </div>
+          </div>
+     
+    </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,114 @@
+.name-price
+{
+    border: 1px solid #337ab7;
+    border-radius: 5px;
+    .stock
+    {
+        color: green;
+    }
+    .name
+    {
+        color: gray;
+        .fa-truck, span
+        {
+            color: green;
+        }
+    }
+
+
+    #exTab1 .tab-content {
+        color : black;
+        background-color: darkorange;
+        padding : 5px 15px;
+      }
+      
+      #exTab2 h3 {
+        color : white;
+        background-color: black;
+        padding : 5px 15px;
+      }
+      
+      /* remove border radius for the tab */
+      
+      #exTab1 .nav-pills > li > a {
+        border-radius: 0;
+      }
+      
+      /* change border radius for the tab , apply corners on top*/
+      
+      #exTab3 .nav-pills > li > a {
+        border-radius: 4px 4px 0 0 ;
+      }
+      
+      #exTab3 .tab-content {
+        color : black;
+        background-color: lightgray;
+        padding : 5px 15px;
+      }  
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover
+{
+    color: black !important;
+    background-color: #337ab7;
+}
+
+/***************** drop down style **************/
+.inputstl { 
+    padding: 9px; 
+    border: solid 1px #337ab7; 
+    outline: 0; 
+    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #C6ECFF), to(#FFFFFF)); 
+    background: -moz-linear-gradient(top, #FFFFFF, #C6ECFF 1px, #FFFFFF 25px); 
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+
+    } 
+
+    .inputstl:hover
+    {
+        cursor: pointer;
+    }
+    .margin-top
+    {
+        margin-top: 1em;
+    }
+
+    .nav-pills li a
+    {
+        color: black !important;
+        font-weight: bold;
+    }
+
+ 
+
+    .btn-block, .btn-block i
+    {
+        font-weight: bold;
+    }
+    .btn-block i {
+        
+    }
+
+    .padding-bottom
+    {
+        padding-bottom: 1.5em;
+    }
+
+    .padding-top
+    {
+        padding-top: 1em;
+    }
+
+    .select
+    {
+        padding-bottom: 1em;
+    }
+
+    .fa-shopping-bag {
+        color: white ;
+        &:hover {
+            color: #337ab7;
+        }
+    }

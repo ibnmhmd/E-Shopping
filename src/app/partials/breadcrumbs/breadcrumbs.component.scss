@@ -1,0 +1,26 @@
+.breadCrums li
+{
+   float: left; 
+   margin: 0 .5em;
+   &:before
+   {
+       content: "\25ba";
+   }
+
+   a
+   {
+       cursor: pointer;
+       text-decoration: none;
+       color: black;
+       &:hover
+       {
+           color: darkorange;
+       }
+   }
+}
+
+.breadCrums
+{
+    list-style: none;
+    padding: 0;
+}

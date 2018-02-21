@@ -1,0 +1,58 @@
+<app-breadcrumbs></app-breadcrumbs>
+<section>
+    <div class="container">
+      <div class="row">
+        <app-product-category></app-product-category>
+           <div class="col-xs-12 col-sm-8 col-lg-8">
+               <div class="row">
+                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                   <h2 class="text-center text-underline">CONTACT US</h2></div>
+               </div>
+
+                <!-- info -->
+                <div  class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center media media-bold">
+                    <div class="col-xs-12"><h3 class="media-bold noResult"><i>Welcome here </i></h3></div>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias ad asperiores quaerat repellat dolor pariatur, officia veritatis eius non vero fuga, ipsam animi, tempore praesentium.</p>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias ad asperiores quaerat repellat dolor pariatur, officia veritatis eius non vero fuga, ipsam animi, tempore praesentium.</p>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias ad asperiores quaerat repellat dolor pariatur, officia veritatis eius non vero fuga, ipsam animi, tempore praesentium.</p>
+
+                    <div class="col-xs-12 checkout"><h3 class="media-bold noResult"><i>Keep in touch using the form below</i></h3></div>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias ad asperiores quaerat repellat dolor pariatur, officia veritatis eius non vero fuga, ipsam animi, tempore praesentium. </p>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias ad asperiores quaerat repellat dolor pariatur, officia veritatis eius non vero fuga, ipsam animi, tempore praesentium. </p>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias ad asperiores quaerat repellat dolor pariatur, officia veritatis eius non vero fuga, ipsam animi, tempore praesentium. </p>
+                    
+                    <div class="col-xs-12 checkout fom">
+                      <div class="wrapper">
+                        <div class="inner-box">
+                            <form  class="">                       
+                                 <div class="form-group">
+                                  <label>Your name</label>
+                                  <input name = "name" [(ngModel)]="name" type="text" class="form-control" id= "name" placeholder="Your name here" maxlength="20">
+                                </div>
+            
+                                <div class="form-group">
+                                    <label>Your email</label>
+                                    <input name="email" [(ngModel)]="email" type="text" class="form-control" id="email" placeholder="Email here">
+                                </div>
+
+                                  <div class="form-group">
+                                      <label>Your message</label>
+                                      <textarea maxlength="20" name="message" [(ngModel)]="message" class="form-control" id="message"></textarea>
+                                 </div> 
+                                 
+                                 <a class="btn btn-block btn-warning text-center text-uppercase" style="color: white; font-weight: bold" (click)="sendMessage()"> Send Message</a>
+                              </form>
+                        </div>
+                      </div>
+                      <div *ngIf="created" class="alert alert-success text-center">
+                         <strong >Thank you ! message has been sent, we'll get back to you as soon as possible . </strong>
+                     </div>
+                    </div>
+                    <!-- contact-us button -->
+                    <!-- button ends -->
+                </div>
+                <!-- info ends -->
+          </div>
+      </div>
+    </div>
+</section>

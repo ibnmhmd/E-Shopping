@@ -1,0 +1,14 @@
+<section> 
+ <div class="container">
+  <div class="row">
+     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <ul class="breadCrums clearfix">
+        <li><a  routerLink = "/"> HOME</a> </li>
+        <li *ngIf ="categoryName !== '' "><a [routerLink] = "['/view-product', categoryName]">{{categoryName | uppercase}}</a> </li>
+        <li *ngIf ="categoryName === '' "><a [routerLink] = "['/', newPath]">{{newPath | uppercase}}</a> </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</section>

@@ -1,0 +1,19 @@
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 99999; /* Sit on top */
+    padding-top: 70px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(4, 4, 4, 0.81); /* Black w/ opacity */
+    text-align: center;
+  }
+
+  #imageR
+{
+  margin-top: 11%;
+}
+  

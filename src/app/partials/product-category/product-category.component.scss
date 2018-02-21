@@ -1,0 +1,18 @@
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover
+{
+    color: white;
+    border-color: #337ab7;
+    background-color: #337ab7;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.child
+{
+  
+}
+
+.child:focus, .child:hover
+{
+    color: darkorange;
+}

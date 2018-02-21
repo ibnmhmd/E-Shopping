@@ -1,0 +1,44 @@
+{
+    "most_popular": [
+      {
+          "cat_id": 1,
+          "cat_title": "FIFA 2017",
+          "router": "fifa 17"
+      },
+      {
+          "cat_id": 2,
+          "cat_title": "Call of Duty",
+          "router": "call of duty"
+      },
+      {
+          "cat_id": 3,
+          "cat_title": "iPhone X",
+          "router": "iphone x"
+      },
+      {
+          "cat_id": 4,
+          "cat_title": "iPhone 8",
+          "router": "iphone 8"
+      },
+      {
+          "cat_id": 5,
+          "cat_title": "Galaxy S8 Plus",
+          "router": "galaxy s8 plus"
+      },
+      {
+          "cat_id": 6,
+          "cat_title": "Galaxy S8",
+          "router": "galaxy s8"
+      },
+      {
+        "cat_id": 7,
+        "cat_title": "Samsung Galaxy Tab",
+        "router": "samsung tab"
+     },
+     {
+        "cat_id": 8,
+        "cat_title": "X BOX 3",
+        "router": "x box 3"
+     }
+    ]
+  }

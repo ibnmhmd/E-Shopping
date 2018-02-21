@@ -1,0 +1,93 @@
+<app-breadcrumbs></app-breadcrumbs>  
+    <section>
+        <div class="container">      
+          <div class="row">
+            <app-product-category></app-product-category>
+                  <div class="col-xs-12 col-sm-8 col-lg-8">
+                        <div *ngIf="noItems" class="alert alert-danger">
+                            <strong>OOPS ! No Items Added To The Cart. </strong>
+                        </div>
+                        <a *ngIf="noItems" class="btn btn-block btn-warning" routerLink = '/'>Shop Now</a>
+                        <div *ngIf="itemRemoved" class="alert alert-success">
+                            <strong>Item has been successfully removed from the cart.</strong>
+                        </div>
+
+                    <div class="row media" *ngFor ="let item of itemsInCart">
+                      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <!-- items in cart -->
+                        <figure>
+                           <a><img src = "{{item.thumbnail_img}}" class="image-style"></a> 
+                        </figure>
+                        <!-- items in cart end -->
+                      </div>
+
+                      <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 info">
+                          <!-- items in cart -->
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h4>{{item?.cat_title}}</h4></div>          
+                          <!-- items in cart end -->
+                      </div>
+
+                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 info">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"><h4>Quantity : {{item?.quantity}}</h4></div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"><h4>AED{{item?.price}}</h4></div>   
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"><h5><i (click)= "removeItem(item.guid)" class="fa fa-trash move" aria-hidden="true"></i><span class="move" (click)= "removeItem(item.guid)">Remove</span></h5></div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"><h5><i class="fa fa-pencil-square-o move" aria-hidden="true" [routerLink] = "['/full-view/',item.category, item.guid]"></i><span [routerLink] = "['/full-view/',item.category, item.guid]" class="move">Edit</span></h5></div>
+                        </div>
+                    </div>
+                 </div>
+                    <!-- cart info -->
+                     <div *ngIf="!noItems" class="col-xs-12 col-sm-12 col-md-8 col-lg-8 text-center media media-bold">
+                        <div class="col-xs-12"><h4 class="media-bold"><i>Order Summary</i></h4></div>
+                        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3"><span>Item(s) :</span><span class="result">{{noOfItems}}</span></div>
+                        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3"><span>Ship To :</span><span class="result">Dubai</span></div>
+                        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3"><span>VAT (5%):</span><span class="result"> AED {{calculatedVAT}}</span></div>
+                        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3"><span>Grand Total :</span><span class="result">{{grandTotal}}</span> </div>
+                        <!-- checkout button -->
+                        <div class="col-xs-12 checkout"><a class="btn btn-block btn-warning " (click) ="checkOutOptions()"><i class="fa fa-lock" aria-hidden="true"></i> Secure Checkout</a></div>
+                        <!-- checkout button ends -->
+                    </div>
+                    <!-- info ends -->
+                    <div class="clearfix"></div>
+           </div>
+          
+       </div>
+   </section>
+<<<<<<< HEAD
+
+     <!-- Modal -->
+<div class="modal fade " id="checkOutOption" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLabel"> Check out options
+            <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </h4>
+          
+        </div>
+        <div class="modal-body">
+              <div class="row">
+                   <div class="col-xs-12">                        
+                  </div>
+                   <div class="col-xs-12 col-sm-12 col-md-6">
+                    <h4 class="text-center">Returning user ?</h4>
+                    <a (click) ="signIn()" class="btn btn-block btn-warning optionBtn"> <span class="glyphicon glyphicon-log-in" id="log"></span>Sign in and checkout</a>
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-6">
+                    <h4 class="text-center">Guest ?</h4>
+                     <a routerLink = "/secure-checkout" (click) ="shutPop()" class="btn btn-block btn-warning optionBtn"><i class="fa fa-lock" aria-hidden="true"  id="log"></i> Checkout as a guest</a>     
+                  </div>      
+          </div>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <!-- ends -->
+  
+=======
+>>>>>>> b116352f46dc2f006ecc7f3a7189b97e8cc9985c

@@ -1,0 +1,60 @@
+<ng-container *ngIf = "hasLoggedIn">
+    <app-breadcrumbs></app-breadcrumbs>  
+</ng-container>
+    <section *ngIf = "hasLoggedIn">
+        <div class="container">      
+          <div class="row">
+              
+            <app-product-category></app-product-category>
+            <div class="col-xs-12 col-sm-8 col-lg-8">
+                    <h2 class="text-center text-uppercase">Order(s) History</h2>
+                      <div *ngIf="noOrder" class="alert alert-danger">
+                            <strong>OOPS ! No Previous Order(s). </strong>
+                        </div>
+                        <a *ngIf="noOrder" class="btn btn-block btn-warning" routerLink = '/'>Shop Now</a>                      
+                    <div class="row media" *ngFor ="let order of ordersInHistory" >
+                      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                        <!-- items in cart -->
+                        <figure>
+                           <a><img src = "{{order.thumbnail_img}}" class="image-style"></a> 
+                        </figure>
+                        <!-- items in cart end -->
+                      </div>
+
+                      <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 info">
+                          <!-- items in cart -->
+                          <div class="col-xs-12 col-sm-12 col-md-3"><h5 class="text-uppercase">Name</h5></div>
+                          <div class="col-xs-12 col-sm-12 col-md-3"><h5 class="text-uppercase">Price</h5></div>
+                          <div class="col-xs-12 col-sm-12 col-md-3"><h5 class="text-uppercase ">Qty</h5></div>
+                          <div class="col-xs-12 col-sm-12 col-md-3"><h5 class="text-uppercase">Ordered On</h5></div>        
+                          <!-- items in cart end -->
+                      </div>
+                         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 info">
+                            <div class="col-xs-12 col-sm-12 col-md-3"><h5 class="text-uppercase">{{order?.cat_title}}</h5></div>
+                            <div class="col-xs-12 col-sm-12 col-md-3"><h5 class="text-uppercase">{{order?.price}}</h5></div>
+                            <div class="col-xs-12 col-sm-12 col-md-3"><h5 class="text-uppercase">{{order?.quantity}}</h5></div>
+                            <div class="col-xs-12 col-sm-12 col-md-3"><h5 class="text-uppercase">{{order?.time}}</h5></div>        
+                        </div>
+                    </div>
+                 </div>                
+                <div class="clearfix"></div>
+           </div>
+          
+       </div>
+   </section>
+
+<section *ngIf = "!hasLoggedIn">
+      <div class="container">
+        <div class="row">
+           <div class="col-xs-12 col-sm-12 col-lg-12">
+            <h3 class="text-center text-uppercase">OOOOOH TOOOOOO BAD, WE CAUGHT YOU :(</h3>
+            <h2 class="text-center notfound"> 404 NOT FOUND </h2>
+          </div>
+    
+          <div class="col-xs-12 col-sm-12 col-lg-12 text-center">
+           <a class="btn btn-warning text-center" routerLink = '/'> <span class="glyphicon glyphicon-home goHome"> GO HOME</span></a>
+          </div>
+    
+        </div>
+      </div>
+</section>

@@ -1,0 +1,233 @@
+/* You can add global styles to this file, and also import other style files */
+$fa-font-path: "~font-awesome/fonts";
+@import '~font-awesome/scss/font-awesome';
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import 'variables';
+
+@import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);
+
+.carousel{
+   
+}
+.carousel .item{
+    min-height: 280px; /* Prevent carousel from being distorted if for some reason image doesn't load */
+}
+.carousel .item img{
+    margin: 0 auto; /* Align slide image horizontally center */
+}
+.bs-example{
+
+}
+
+.carousel-inner
+{
+   
+}
+
+/******************** recommendations carrousel style *******************/
+.col-item
+{
+    border: 1px solid #E1E1E1;
+    border-radius: 5px;
+    background: #FFF;
+}
+.col-item .photo img
+{
+    margin: 0 auto;
+    width: 100%;
+}
+
+.col-item .info
+{
+    padding: 10px;
+    border-radius: 0 0 5px 5px;
+    margin-top: 1px;
+}
+
+.col-item:hover .info {
+    background-color: #F5F5DC;
+}
+.col-item .price
+{
+    /*width: 50%;*/
+    float: left;
+    margin-top: 5px;
+}
+
+.col-item .price h5
+{
+    line-height: 20px;
+    margin: 0;
+}
+
+.price-text-color
+{
+    color: #219FD1;
+}
+
+.col-item .info .rating
+{
+    color: #777;
+}
+
+.col-item .rating
+{
+    /*width: 50%;*/
+    float: left;
+    font-size: 17px;
+    text-align: right;
+    line-height: 52px;
+    margin-bottom: 10px;
+    height: 52px;
+}
+
+.col-item .separator
+{
+    border-top: 1px solid #E1E1E1;
+}
+
+.clear-left
+{
+    clear: left;
+}
+
+.col-item .separator p
+{
+    line-height: 20px;
+    margin-bottom: 0;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.col-item .separator p i
+{
+    margin-right: 5px;
+}
+.col-item .btn-add
+{
+    width: 50%;
+    float: left;
+}
+
+.col-item .btn-add
+{
+    border-right: 1px solid #E1E1E1;
+}
+
+.col-item .btn-details
+{
+    width: 50%;
+    float: left;
+    padding-left: 10px;
+}
+.controls
+{
+    margin-top: 20px;
+}
+[data-slide="prev"]
+{
+    margin-right: 10px;
+}
+
+.title
+{
+    font-weight: bold;
+
+}
+
+.hoverClass:hover
+{
+  cursor: pointer;
+  color: $dark-orange;
+}
+
+.hoverClassParent:hover
+{
+    cursor: pointer;
+}
+
+.media
+{
+   border: 1px solid #337ab7;
+   border-radius: 5px;
+   background-color: #a6aed11a;
+}
+/********************** recommendation ends *****************/
+
+.danger
+{
+    border: 1.5px solid red !important;
+}
+
+.nodanger
+{
+    border: 1px solid #337ab7 !important;
+}
+
+/***************** drop down style **************/
+.inputstl { 
+    padding: 9px; 
+    border: solid 1px $dark-orange; 
+    outline: 0; 
+    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #C6ECFF), to(#FFFFFF)); 
+    background: -moz-linear-gradient(top, #FFFFFF, #C6ECFF 1px, #FFFFFF 25px); 
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+
+    } 
+
+    .inputstl:hover
+    {
+        cursor: pointer;
+    }
+
+.view-drop
+{
+    border-color: #337ab7 !important;
+    &:hover
+    {
+        cursor: pointer;
+    }
+}
+
+.modal-content
+{
+    top: 5em ;
+}
+
+.btn-warning
+{
+    color: white;
+    background-color: #337ab7 !important;
+    font-weight: bold !important;
+    &:hover{
+        background: white !important;
+        color: #337ab7 !important;
+
+        .fa-shopping-bag {     
+                color: #337ab7;
+        }
+    }
+}
+
+.inner-box {
+    color : white;
+    a
+    {
+        color : black;
+    } 
+}
+
+.slideInRight 
+{
+    background: #337ab7 !important;
+}
+.join {
+    color: black;
+}
+
+.no-border-top
+{
+    border-top: 0px;
+}

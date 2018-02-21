@@ -1,0 +1,87 @@
+<app-breadcrumbs></app-breadcrumbs>  
+    <section>
+        <div class="container">      
+          <div class="row">
+            <app-product-category></app-product-category>
+                  <div class="col-xs-12 col-sm-8 col-lg-8">
+                        <div *ngIf="qtyNotSelected" class="alert alert-danger">
+                            <strong>OOPS ! Please choose quantity before adding this item to the cart. </strong>
+                        </div>
+
+                        <div *ngIf="itemAdded" class="alert alert-success">
+                            <strong>Item has been successfully added to the cart.</strong>
+                        </div>
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                         <figure>
+                            <img class="img-responsive" src="{{slicedObject?.img}}">
+                        </figure>
+                      </div>
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                          <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                                <div class="name-price clearfix">
+                                  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"> <h4 class="text-center">{{slicedObject?.cat_title}}</h4></div>
+                                  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"> <h4 class="text-center">AED{{slicedObject?.price}}</h4></div>
+                                  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"> <h4 class="text-center stock">In Stock</h4></div>
+                                  <div class="name text-center padding-bottom"><i class="fa fa-truck" aria-hidden="true"></i> <span>Delivery :</span>
+                                    Order in the next 07 hrs 23 mins and receive it in  Dubai
+                                    by Wed, Jan 10. </div>
+                                  </div>
+
+                                  <!-- second block -->
+                                   <div class="name-price clearfix no-border-top">
+
+                                      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">   <h4 class="text-center margin-top">Model : <i>{{slicedObject?.guid | uppercase}}</i></h4></div>
+                                       <div class="col-xs-12 col-sm-12 col-md-4 col-lg-8"> 
+                                        <div class=" margin-top select">
+                                               <select #corporation [(ngModel)]="selectedValue" class="form-control inputstl" id="gender1">
+                                                       <option value="0">-- Quantity --</option>
+                                                       <option  *ngFor = "let qty of quantities" value = "{{qty}}">{{qty}}</option>                                                   
+                                               </select>          
+                                              
+                                        </div>
+
+                                            <div class="name text-center padding-bottom">
+                                              <a class ="btn btn-block btn-warning" (click) = "addToCart()"><i (click) = "addToCart()" class="fa fa-shopping-bag" aria-hidden="true"></i> Add to cart</a>                                                   
+                                            </div>
+                                        </div>
+                                  </div>
+
+                                  <!-- tabs -->
+                                  <div class="name-price clearfix no-border-top">
+                                  <div id="exTab3" class="">	
+                                      <ul  class="nav nav-pills">
+                                            <li class="active">
+                                              <a  href="#1b" data-toggle="tab">Overview</a>
+                                            </li>
+                                            <li><a href="#2b" data-toggle="tab">Description</a>
+                                            </li>
+                                            <li><a href="#3b" data-toggle="tab">Size Chart</a>
+                                            </li>
+                                            <li><a href="#4a" data-toggle="tab">Utlization</a>
+                                            </li>
+                                          </ul>
+                                      
+                                            <div class="tab-content clearfix">
+                                              <div class="tab-pane active" id="1b">
+                                                <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non alias, accusantium nulla commodi minus quidem ullam amet saepe consequatur quibusdam nesciunt cumque architecto repellat quam beatae eius aliquam, qui perferendis?</h4>
+                                              </div>
+                                              <div class="tab-pane" id="2b">
+                                                <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta doloribus, repudiandae repellendus vero excepturi velit odit eveniet voluptas quasi eum illum maiores, corrupti atque ipsam alias illo totam nostrum ad.</h4>
+                                              </div>
+                                              <div class="tab-pane" id="3b">
+                                                    <h4>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat laudantium reprehenderit eos! Accusamus aperiam labore eligendi nisi officiis ullam veniam. Mollitia tenetur voluptate adipisci magni, maiores quasi debitis vero aliquam.</h4>                                              </div>
+                                                <div class="tab-pane" id="4b">
+                                                <h4>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore saepe perferendis rem nihil consectetur neque labore, voluptatum accusantium voluptas veniam ducimus architecto obcaecati dolor nostrum quasi asperiores reiciendis animi! Obcaecati?</h4>                                              </div>
+                                            </div>
+                                     </div>
+                                    </div>
+                                  </div>             
+                        </div>
+                      </div>
+                    </div>
+                 </div>
+           </div>
+       </div>
+   </section>

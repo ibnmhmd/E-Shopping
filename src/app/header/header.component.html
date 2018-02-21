@@ -1,0 +1,119 @@
+<nav class="navbar navbar-inverse">
+  <div class="container">
+
+        <div class="navbar-header">
+          <a><img src = "../assets/img/shoppingcart.png" class = "logo"></a>
+        </div>
+
+    <div class="navbar-header">
+      <a class="navbar-brand bold" routerLink = "/">Shopping Cart</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="bold"> <a routerLink = "/"><span class="glyphicon glyphicon-home"> </span> Home</a></li>
+      <li class="bold" routerLink = "/about-us"> <a routerLink = "/about-us"><i class="fa fa-users shift" aria-hidden="true"></i>About Us</a></li>
+      <li class="bold" routerLink = "/contact-us"> <a routerLink = "/contact-us"><span class="glyphicon glyphicon-envelope shift"></span>Contact Us</a></li>
+    </ul>
+    <!-- log in/out  -->
+     <ul class="nav navbar-nav navbar-right">
+    <ng-container *ngIf ="userLoggedOut">
+      <li class="bold" routerLink = "/sign-up"><a routerLink = "/sign-up"><span  class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+    </ng-container>
+      <!-- new one -->
+      <ng-container *ngIf ="userLoggedOut">
+      <li class="bold dropdown log"> 
+        <a  class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-log-in"  id="log"></span> Login</a>
+          <!-- <a >Log In <span class="caret"></span></a> -->
+          <ul class="dropdown-menu dropdown-lr animated slideInRight" role="menu">
+            <div class="col-lg-12">
+              <div class="text-center">
+                <h3><b>Log In</b></h3></div>
+              <form [formGroup]="loginForm" id="ajax-login-form" role="form" autocomplete="off" (ngSubmit)="submitForm(loginForm)">
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input formControlName="email" type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" autocomplete="off">
+                  <span class="validEmail" *ngIf="loginForm.hasError('email', 'email') && loginForm.get('email').touched">
+                    Please provide valid email address.
+                  </span>
+                </div>
+
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input  formControlName="password" type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" autocomplete="off">
+                  <span class="validEmail" *ngIf="!loginForm.controls['password'].valid && loginForm.controls['password'].touched">
+                    Password must be 6 characters or more.
+                  </span>
+
+                </div>
+
+                <div class="form-group">
+                  <div class="row">
+                     <div class="col-xs-12">
+                      <span class="validEmail" *ngIf="userError">
+                          Wrong Email and or Password. 
+                      </span>
+                    </div>
+                    <div class="col-xs-12">
+                      <input [disabled]="!loginForm.valid" type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-warning" value="Log In">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="text-center">
+                        <span tabindex="5" class="forgot-password">Don't have an account ?</span> <span class="join" routerLink="/sign-up">JOIN US</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <input type="hidden" class="hide" name="token" id="token" value="a465a2791ae0bae853cf4bf485dbe1b6">
+              </form>
+            </div>
+          </ul>
+        </li>
+      </ng-container>
+      <!-- ends here -->
+      <!-- logged in user -->
+      <ng-container *ngIf ="!userLoggedOut">
+          <li class="bold dropdown log" > 
+              <a  class="dropdown-toggle" data-toggle="dropdown" href="#"> Welcome {{user}} <span class="fa fa-caret-down" aria-hidden="true"></span></a>
+                <!-- <a >Log In <span class="caret"></span></a> -->
+                <ul class="dropdown-menu dropdown-lr animated slideInRight" role="menu">
+                  <div class="col-lg-12">
+                    <div class="text-center">
+                      <h3><b>{{user | uppercase}}</b></h3>
+                    </div>
+
+                    <form [formGroup]="loginForm" id="ajax-login-form" role="form" autocomplete="off" (ngSubmit)="logoutUser()">
+                      <div class="form-group" >
+                        <label for="username" class="account"><a class="account" routerLink = '/order-history' (click)="redirect()"> Track Order </a> </label>                       
+                      </div>
+                      <div class="form-group">
+                          <label for="username" class="account"><a class="account" routerLink = '/order-history' (click)="redirect()">Previous Orders</a> </label>                        
+                      </div>
+                      <div class="form-group">
+                        <label for="password" class="account"><a  class="account" routerLink = '/order-history' (click)="redirect()"> Manage Account</a></label>                     
+                      </div>      
+                          <div class="col-xs-12">
+                            <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-warning" value="Log out">
+                          </div>                          
+                      <input type="hidden" class="hide" name="token" id="token" value="a465a2791ae0bae853cf4bf485dbe1b6">
+                    </form>
+                  </div>
+                </ul>
+              </li>
+      </ng-container>
+      <!-- ends -->
+      <ng-container *ngIf = "admin">
+      <li><a routerLink ='/admin-panel' ><span  routerLink ='/admin-panel' class="label label-danger admin"><i class="fa fa-unlock" aria-hidden="true"></i> YOU ARE ADMIN </span></a></li>
+     </ng-container>
+      
+      <!-- <li class="bold"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
+      <li><span *ngIf ="counter>0" class="badge badge-success cartCounter" routerLink = "/cart-view">{{counter}}</span> <a routerLink = "/cart-view"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
+    </ul>
+    <button class="hidden trigger" (click) = "setCartCount()"></button>
+    <button class="hidden userPanel" (click) = "openPanel()"></button>
+      <!-- log out  -->
+  </div>
+</nav>

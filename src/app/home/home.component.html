@@ -1,0 +1,222 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <app-product-category></app-product-category>
+       <div class="col-xs-12 col-sm-8 col-lg-8">
+        <!-- carousel starts -->
+            <div class="bs-example">
+              <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                  <!-- Carousel indicators -->
+                  <ol class="carousel-indicators">
+                      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                      <li data-target="#myCarousel" data-slide-to="1"></li>
+                      <li data-target="#myCarousel" data-slide-to="2"></li>
+                      <li data-target="#myCarousel" data-slide-to="3"></li>
+                  </ol>   
+                  <!-- Wrapper for carousel items -->
+                  <div class="carousel-inner">
+                       <div class="item active">
+                          <img src="../assets/img/woman-1.jpg" alt="First Slide">
+                      </div>
+                      <div class="item">
+                          <img src="../assets/img/woman-2.jpg" alt="Second Slide">
+                      </div>
+                      <div class="item">
+                          <img src="../assets/img/man-1.jpg" alt="Third Slide">
+                      </div>
+
+                      <div class="item">
+                        <img src="../assets/img/shoes.jpg" alt="Third Slide">
+                      </div>
+                  </div>
+                  <!-- Carousel controls -->
+                  <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+                      <span class="glyphicon glyphicon-chevron-left"></span>
+                  </a>
+                  <a class="carousel-control right" href="#myCarousel" data-slide="next">
+                      <span class="glyphicon glyphicon-chevron-right"></span>
+                  </a>
+              </div>
+          </div>
+      <!-- carousel ends -->
+      </div>
+
+       <!-- recommendations -->
+       <div class="col-xs-12 col-sm-8 col-lg-8">
+          <!-- recommendations carrousel -->
+                  <div class="row">
+                      <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                          <h3 class="text-center"> Recommendations for You</h3>
+                      </div>
+                      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                          <!-- Controls -->
+                          <div class="controls pull-right ">
+                              <a class="left fa fa-chevron-left btn btn-primary" href="#carousel-example-generic"
+                                  data-slide="prev"></a><a class="right fa fa-chevron-right btn btn-primary" href="#carousel-example-generic"
+                                      data-slide="next"></a>
+                          </div>
+                      </div>
+                  </div>
+                  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                      <!-- Wrapper for slides -->
+                      <div class="carousel-inner">
+                          <div class="item active">
+
+                              <div class="row">
+                                  <div class="col-sm-4 hoverClassParent" *ngFor = "let recommendation of recommendations">
+                                      <div class="col-item" >
+                                          <div class="photo">
+                                              <a [routerLink] = "['/full-view/',categoryName, recommendation.guid]"><img src="{{recommendation.img}}" class="img-responsive" alt="a" /></a>
+                                          </div>
+                                          <div class="info">
+                                              <div class="row">
+                                                  <div class="price col-sx-12 col-sm-12 col-md-12 col-lg-12">
+                                                      <h5 class=" title"> {{ recommendation.cat_title }}</h5>                                                  
+                                                  </div>
+                                                 
+                                                  <div class="price col-sx-12 col-sm-12 col-md-12 col-lg-1">
+                                                      <h5 class="text-center price"> AED{{ recommendation.price }} </h5>                                                    
+                                                  </div>
+                                                </div>
+
+                                                  <div class="separator clear-left">
+                                                      <p class="btn-add">
+                                                          <i [routerLink] = "['/full-view/',categoryName, recommendation.guid]" class="fa fa-shopping-cart hoverClass"></i><a [routerLink] = "['/full-view/',categoryName, recommendation.guid]" class="hidden-sm hoverClass">Add to cart</a></p>
+                                                      <p class="btn-details">
+                                                          <i (click) ="quickView(recommendation)" class="fa fa-eye hoverClass"></i><a (click) ="quickView(recommendation)" class="hidden-sm hoverClass">View</a></p>
+                                                  </div>
+                                                 <div class="clearfix">
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>   
+                              </div>
+                          </div>
+                          <div class="item">
+                              <div class="row">
+                                  <div class="col-sm-4 hoverClassParent" *ngFor =" let recommendation of recommendations">
+                                      <div class="col-item">
+                                          <div class="photo">
+                                              <a [routerLink] = "['/full-view/',categoryName, recommendation.guid]"><img id="zoom" src="{{recommendation.img}}" class="img-responsive" alt="a" data-zoom-image="recommendation.img"/></a>
+                                          </div>
+                                          <div class="info">
+                                              <div class="row">
+                                                  <div class="price col-sx-12 col-sm-12 col-md-12 col-lg-12">
+                                                      <h5 class=" title"> {{ recommendation.cat_title }}</h5>                                                  
+                                                  </div>
+                                                 
+                                                  <div class="price col-sx-12 col-sm-12 col-md-12 col-lg-1">
+                                                      <h5 class="text-center price"> AED{{ recommendation.price }} </h5>                                                    
+                                                  </div>
+                                                </div>
+
+                                                <div class="separator clear-left">
+                                                    <p class="btn-add">
+                                                        <i [routerLink] = "['/full-view/',categoryName, recommendation.guid]" class="fa fa-shopping-cart hoverClass"></i><a [routerLink] = "['/full-view/',categoryName, recommendation.guid]" class="hidden-sm hoverClass">Add to cart</a></p>
+                                                    <p class="btn-details">
+                                                        <i (click) ="quickView(recommendation)" class="fa fa-eye hoverClass"></i><a (click) ="quickView(recommendation)" class="hidden-sm hoverClass">View</a></p>
+                                                </div>
+                                                 <div class="clearfix">
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>   
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+          <!-- recommendation carrousel end -->
+          
+      </div>
+      <!-- recommendation ends -->
+
+    </div>
+  </div>
+  <button (click) = 'get()'>get json</button>
+</section>
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="quickView" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="mmodal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="exampleModalLabel"> Item Quick View
+    
+                <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </h4>
+              
+            </div>
+            <div class="modal-body">
+                  <div class="row">
+                       <div class="col-xs-12">
+                                <div *ngIf = "qtyNotSelected" class="alert alert-danger">
+                                    <strong>OOPS ! Please choose quantity before adding this item to the cart. </strong>
+                                </div>
+    
+                                <div *ngIf="itemAdded" class="alert alert-success">
+                                        <strong>Item has been successfuly added to the cart.</strong>
+                                    </div>
+                      </div>
+                       <div class="col-xs-12 col-sm-12 col-md-6">
+                         <figure>
+                             <a href="">
+                                <img src= "{{img}}" class="img-responsive">
+                            </a>
+                        </figure>
+                      </div>
+                         <div class="col-xs-12 col-sm-12 col-md-6">
+                            <div class="col-xs-12 info">
+                                <h3 class="text-uppercase bold">{{name}}</h3>
+                                <h4 class="bold">AED {{price}}&nbsp; &nbsp; <span class="stock">In Stock</span></h4>
+                                <h4>{{model}}</h4>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <select class="form-control view-drop" [(ngModel)] = "selectedQty">
+                                        <option value = "0">-- Select Quantity --</option>
+                                        <option value = "{{q}}" *ngFor ="let q of quantity">{{q}}</option>                              
+                                    </select>
+                                </div>
+                            </div>
+                           
+                            <div class="col-xs-12">
+                                <a class="btn btn-block btn-warning" (click) = "addToCart()"><i (click) = "addToCart()" class="fa fa-shopping-bag" aria-hidden="true"></i> Add to cart </a>
+                            </div>
+                            <div class=" col-xs-12 name text-center padding-bottom"><i class="fa fa-truck" aria-hidden="true"></i> <span class="truck">Delivery :</span>
+                                Order in the next 07 hrs 23 mins and receive it in  Dubai
+                                by Wed, Jan 10. </div>                    
+                  </div>
+                       <!-- tabs -->
+                       <div class="col-xs-12 name-price clearfix no-border-top">
+                        <div id="exTab3" class="">	
+                            <ul  class="nav nav-pills">
+                                  <li class="active">
+                                    <a  href="#1b" data-toggle="tab">Overview</a>
+                                  </li>
+                                  <li><a href="#2b" data-toggle="tab">Description</a>
+                                  </li>
+                                 
+                                </ul>
+                            
+                                  <div class="tab-content clearfix">
+                                    <div class="tab-pane active" id="1b">
+                                      <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non alias, accusantium nulla commodi minus quidem ullam amet saepe consequatur quibusdam nesciunt </h5>
+                                    </div>
+                                    <div class="tab-pane" id="2b">
+                                      <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta doloribus, repudiandae repellendus vero excepturi velit odit eveniet.</h5>
+                                    </div>                                  
+                                  </div>
+                           </div>
+                    </div>
+              </div>
+            </div>
+            <!-- <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <!-- ends -->
