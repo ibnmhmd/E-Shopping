@@ -9,17 +9,14 @@ const userModule = require ('./manage-users-cart');
 export class AuthGuardGuard implements CanActivate {
 
   constructor(private router: Router) {
-
   }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
-    
-     if(userModule.isAdmin())
-     {
+     if ( userModule.isAdmin() ) {
        return userModule.isAdmin();
      }else {
        this.router.navigate(['404']);
-     } 
+     }
   }
 }
