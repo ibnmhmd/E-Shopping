@@ -15,12 +15,9 @@ It's a complete shopping cart project with the following functionalities :-
 
 ## Quick start
 
-Clone the project and run `npm install` .
-Similarly you can see the live version here `https://ibnmhmd.github.io/Shopping-Cart`
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Clone the project and run `npm install` on the project folder, after successful installation run `npm run serve:universal` after successful build run `node server.js` Navigate to `http://localhost:3000/`.
+you can Similarly see the live version here `https://ibnmhmd.github.io/Shopping-Cart` (non SEO friendly) and
+`https://shoppify.herokuapp.com/` (SEO friendly implemented with SSR).
 
 ## Code scaffolding
 
