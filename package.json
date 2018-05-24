@@ -45,6 +45,7 @@
     "moment": "^2.20.1",
     "mongodb": "^3.0.1",
     "mongoose": "^4.13.9",
+    "node-sass": "^4.9.0",
     "reflect-metadata": "^0.1.12",
     "rxjs": "^5.5.2",
     "simple-crypto-js": "^1.1.1",
@@ -52,7 +53,6 @@
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
-  
     "@angular/language-service": "^5.0.0",
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
