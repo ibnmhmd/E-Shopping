@@ -66,7 +66,10 @@ export class HeaderComponent implements OnInit {
   submitForm(form) {
     $('#loading').show();
    if ( form.valid) {
-      const users = usersModule.getAllRegisteredUsers();
+      let  users;
+      if ( isPlatformBrowser(this.platformId) ) {
+           users =  usersModule.getAllRegisteredUsers(localStorage.getItem('users')) ;
+       } 
       const user =  usersModule.getCurrentUserByEmail(form.value.email);
       let guestCart ;
       if (isPlatformBrowser(this.platformId)) {

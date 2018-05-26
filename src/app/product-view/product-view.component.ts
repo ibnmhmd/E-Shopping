@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import {CategoryListingServiceService} from '../services/category-listing-service.service';
 import { ActivatedRoute, Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { Categories } from '../enum/categories.enum';
 import { ShoppingCategoryServiceService } from '../services/shopping-categories.service';
 import { CartManagementService } from '../services/cart-management.service';
 import { Meta, Title } from '@angular/platform-browser';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 
 declare var require: any;
 const cartModule = require('../add-item-to-cart.module');
@@ -39,7 +40,7 @@ export class ProductViewComponent implements OnInit {
     private router: Router,
     private shoppingCategories: ShoppingCategoryServiceService,
     private cartManagementService: CartManagementService,
-  private meta: Meta, private title:Title) {
+  private meta: Meta, private title:Title,  @Inject(PLATFORM_ID) private platformId: Object) {
 
      // Sets the <title></title>
       title.setTitle('Shopping-Cart: Products View');
@@ -88,19 +89,25 @@ export class ProductViewComponent implements OnInit {
         this.detach();
       }else {
         /******************** starts ******/
-        const data = usersModule.getUserData();
-        const users = usersModule.getAllRegisteredUsers() ;
+        let data, users;
+        if ( isPlatformBrowser(this.platformId) ) {
+          data =  usersModule.getUserData(localStorage.getItem('user_data'));
+          users =  usersModule.getAllRegisteredUsers(localStorage.getItem('users')) ;
+         }
         let currentUser ;
     /*********** extract the old values in the storage and append the new ones  ****/
     let _extract_data = [];
     if (!usersModule.isRegisteredUser()) {
-       _extract_data = data.guest_cart ;
-       _extract_data = _extract_data.filter (object => object.guid !== this.fetchedData.guid );
+        _extract_data = data.guest_cart ;
+        _extract_data = _extract_data.filter (object => object.guid !== this.fetchedData.guid );
        this.fetchedData['quantity'] = this.selectedQty;
        _extract_data.unshift(this.fetchedData);
        data.guest_cart = _extract_data ;
-       localStorage.setItem('guest_cart', JSON.stringify(_extract_data ));
-       localStorage.setItem('user_data', JSON.stringify(data));
+       if (isPlatformBrowser(this.platformId)) { 
+        localStorage.setItem('guest_cart', JSON.stringify(_extract_data ));
+        localStorage.setItem('user_data', JSON.stringify(data));
+       }
+      
        this.itemAddedToCart();
     
     }else {

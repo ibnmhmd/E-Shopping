@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , PLATFORM_ID, Inject} from '@angular/core';
 declare var $: any ;
 import { Console } from '@angular/core/src/console';
 import { ActivatedRoute, Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { EventEmiter } from '../interfaces/eventEmitter.interface';
 import { CartManagementService } from '../services/cart-management.service';
 import { Meta, Title } from '@angular/platform-browser';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 
 declare var require: any;
 const usersModule = require ('../manage-users-cart');
@@ -28,7 +29,7 @@ export class CartItemsComponent implements OnInit {
   calculatedVAT: Number = 0 ;
   constructor( private route: ActivatedRoute,
     private router: Router, private cartManagementService: CartManagementService,
-  private title:Title, private meta:Meta) {
+  private title:Title, private meta: Meta,  @Inject(PLATFORM_ID) private platformId: Object) {
 
     // Sets the <title></title>
     title.setTitle('Shopping-Cart: products in cart');
@@ -43,34 +44,42 @@ export class CartItemsComponent implements OnInit {
   /************ setv value ******/
   setCalculation() {
     this.calculateTotalCost();
+    console.log('set cal', this.itemsInCart)
     this.noOfItems = this.itemsInCart.length;
   }
   /*********** ends *********/
   /********** get items in cart ***/
   extractItems() {
-    localStorage.setItem('items', null);
-    const data = usersModule.getUserData();
-    const currentUser = usersModule.getCurrentUserByEmail(data.email);
-    const users = usersModule.getAllRegisteredUsers() ;
+    let data, users, currentUser;
+    if ( isPlatformBrowser(this.platformId) ) {
+      localStorage.setItem('items', null);
+      data =  usersModule.getUserData(localStorage.getItem('user_data'));
+      users =  usersModule.getAllRegisteredUsers(localStorage.getItem('users')) ;
+      currentUser = usersModule.getCurrentUserByEmail(data.email);
+     }
     /********** guest users ******/
     if (!usersModule.isRegisteredUser()) {
       if (data) {
           this.itemsInCart = [];
           this.itemsInCart = data.guest_cart;
-          this.setCalculation();  
+          this.setCalculation();
       }else {
            this.noItems = true ;
            this.detach();
       }
     }else {
             this.itemsInCart = [];
+            if ( isPlatformBrowser(this.platformId) ) { 
             this.token = localStorage.getItem('user_token');
+            }
             /************* get customer cart ***********/
             this.cartManagementService.getCustomerCart(this.token).subscribe(data => {
               if(data && data.hasOwnProperty('data') && data.data.length > 0 && data.data[0].cart[0] !== null) {
                 this.itemsInCart = data.data[0].cart;
                 this.setCalculation();
-                localStorage.setItem('items', (String)(this.noOfItems));
+                if ( isPlatformBrowser(this.platformId) ) {
+                   localStorage.setItem('items', (String)(this.noOfItems));
+                }
               }else {
                 this.noItems = true ;
                 this.detach();
@@ -84,14 +93,21 @@ export class CartItemsComponent implements OnInit {
   /************* ends *************/
   removeItem(guid) {
     this.attach();
-    const data = usersModule.getUserData();
-    const currentUser = usersModule.getCurrentUserByEmail(data.email);
+    let data, users, currentUser;
+    if ( isPlatformBrowser(this.platformId) ) {
+      localStorage.setItem('items', null);
+      data =  usersModule.getUserData(localStorage.getItem('user_data'));
+      users =  usersModule.getAllRegisteredUsers(localStorage.getItem('users')) ;
+      currentUser = usersModule.getCurrentUserByEmail(data.email);
+     }
     if (this.itemsInCart) {
        this.itemsInCart = this.itemsInCart.filter ( item =>  item.guid !== guid );
        if (!usersModule.isRegisteredUser()) {
            data.guest_cart = this.itemsInCart ;
+           if ( isPlatformBrowser(this.platformId) ) {
            localStorage.setItem('guest_cart', JSON.stringify(this.itemsInCart));
            localStorage.setItem('user_data', JSON.stringify(data));
+           }
            this.cartUpdated();
        }else {
               let body = {'item': {}, 'token': ''};
@@ -110,21 +126,24 @@ export class CartItemsComponent implements OnInit {
   }
   /****************** cart updated ********/
   cartUpdated() {
-    window.scroll(0, 0 );
+    if ( isPlatformBrowser(this.platformId) ) {
+    window.scroll(0, 0 ); }
     this.itemRemoved = true ;
     this.noItems = false ;
     setTimeout(() => {
      this.itemRemoved = false ;
     }, 2000);
     this.calculateTotalCost();
-    $('.trigger').click();
+    if ( isPlatformBrowser(this.platformId) ) { $('.trigger').click();}
     this.detach();
   }
   /******************* ends ************/
   /********************** calculate cost *****/
   calculateTotalCost() {
-    localStorage.setItem('grandTotal', null);
-    localStorage.setItem('VAT', null);
+    if ( isPlatformBrowser(this.platformId) ) { 
+        localStorage.setItem('grandTotal', null);
+        localStorage.setItem('VAT', null);
+    }
     this.cost = 0;
     if (this.itemsInCart && this.itemsInCart.length !== 0) {
         Object.keys(this.itemsInCart).map((key, value) => {
@@ -132,15 +151,18 @@ export class CartItemsComponent implements OnInit {
       });
       this.calculatedVAT = usersModule.calculateVAT(this.cost);
       this.grandTotal = this.cost + this.calculatedVAT;
+      if ( isPlatformBrowser(this.platformId) ) { 
       localStorage.setItem('grandTotal', (String)(this.grandTotal));
-      localStorage.setItem('VAT', (String)(this.calculatedVAT));
+      localStorage.setItem('VAT', (String)(this.calculatedVAT)); }
+      this.noOfItems = this.itemsInCart.length;
     }else {
      setTimeout(() => {
       this.noItems = true;
      }, 2000);
     }
-    this.noOfItems = this.itemsInCart.length;
-    localStorage.setItem('items', (String)(this.noOfItems));
+   console.log('cal tot cost', this.itemsInCart)
+    if ( isPlatformBrowser(this.platformId) ) { 
+    localStorage.setItem('items', (String)(this.noOfItems)); }
     this.detach();
   }
   /********************ends ***************/
@@ -154,41 +176,51 @@ export class CartItemsComponent implements OnInit {
   /***************ends ***************/
   ngOnInit() {
     this.attach();
-    window.scroll(0, 0);
+    if ( isPlatformBrowser(this.platformId) ) {
+    window.scroll(0, 0); }
     this.extractItems();
     this.defaultEvent.userMode = '';
   }
 
   /******************** check out options ******/
   checkOutOptions() {
-    if(!usersModule.isRegisteredUser()) {
+    if ( isPlatformBrowser(this.platformId) ) {
+    if(!usersModule.isRegisteredUser(localStorage.getItem('user_data'))) {
       $('#checkOutOption').modal('show');
-    }else {
+     
+     }else {
       this.router.navigate(['/secure-checkout']);
-    }
-   
+     }
+   }
   }
   //******************* ends **************/
 
   //*************** sign in **************/
   signIn() {
-    window.scroll(0, 0);
-    localStorage.setItem('userMode', 'Returning');
+    if ( isPlatformBrowser(this.platformId) ) {
+    window.scroll(0, 0); }
+    if ( isPlatformBrowser(this.platformId) ) { 
+    localStorage.setItem('userMode', 'Returning'); }
+    if ( isPlatformBrowser(this.platformId) ) { 
     $('.userPanel').click();
     $('#checkOutOption').modal('hide');
+    }
   }
 
   /**************** close pop up ******/
   shutPop() {
-    $('#checkOutOption').modal('hide');
+    if ( isPlatformBrowser(this.platformId) ) { 
+    $('#checkOutOption').modal('hide'); }
   }
 
     /************ load/unload ****/
     detach() {
-      $('#loading').hide();
+      if ( isPlatformBrowser(this.platformId) ) { 
+      $('#loading').hide(); }
     }
     attach() {
-      $('#loading').show();
+      if ( isPlatformBrowser(this.platformId) ) { 
+      $('#loading').show(); }
     }
    /**************** ends ******/
 }

@@ -26,9 +26,9 @@ getCurrentUserByEmail = (email) => {
         return currentUser ;
     }
 }
-getAllRegisteredUsers = () =>{
-    if(localStorage.getItem('users')) {
-        const users = JSON.parse(localStorage.getItem('users'));
+getAllRegisteredUsers = (object) =>{
+    if(object) {
+        const users = JSON.parse(object);
         return users;
     }
 }
