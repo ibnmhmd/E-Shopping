@@ -1,4 +1,4 @@
-[{
+{"data": [{
     "success": 1,
     "title": "shirt",
     "total_products": "577",
@@ -2185,4 +2185,5 @@
     "title": "Polo Shirts",
     "url": "http:\/\/playground-dev.tools.kskdigital.com\/men\/clothing\/polo-shirts.html",
     "breadcrumb": ["Men", "Clothing"]
-}]
+}] 
+}
