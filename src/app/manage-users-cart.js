@@ -1,5 +1,5 @@
 getUserData = (object) => {
-    let data = [];
+    let data = {};
     if (object) {
       data = JSON.parse(object);
     }
@@ -17,6 +17,7 @@ isRegisteredUser = (data) => {
               return true;
           }
         }
+    return false;
 }
 
 getCurrentUserByEmail = (email) => {

@@ -82,7 +82,9 @@ extractProductFromObject(guid, object)
 
 /************** add item to cart *******/
 addToCart() {
+  console.log("Attaching loader :: ");
     this.attach();
+    debugger;
    /***************** set error message if quantity not set *****/
    if (0 === this.selectedValue || '0' === this.selectedValue ) {
      this.qtyNotSelected = true ;
@@ -95,13 +97,15 @@ addToCart() {
      this.detach();
    }else {
       /******************** starts ******/
+
       const data = usersModule.getUserData();
+      console.log(data);
       const users = usersModule.getAllRegisteredUsers() ;
       let currentUser ;
      /*********** extract the old values in the storage and append the new ones  ****/
      let _extract_data = [];
       if(!usersModule.isRegisteredUser()) {
-        _extract_data = data.guest_cart ;
+        _extract_data = data.guest_cart ? data.guest_cart : new Array();
         _extract_data = _extract_data.filter (object => object.guid !== this.slicedObject.guid );
         this.slicedObject['quantity'] = this.selectedValue;
         _extract_data.unshift(this.slicedObject);
@@ -179,7 +183,7 @@ setQty()
     {
         this.loadShoppingCategories(this.guid,category);
     }
-    console.log(this.route.snapshot.params['category']);
+    console.log("category selected : " +this.route.snapshot.params['category']);
   }
 
    /**************** success ******/
