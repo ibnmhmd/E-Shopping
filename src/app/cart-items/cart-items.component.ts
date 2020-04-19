@@ -43,6 +43,7 @@ export class CartItemsComponent implements OnInit {
 
   /************ setv value ******/
   setCalculation() {
+    debugger
     this.calculateTotalCost();
     console.log('set cal', this.itemsInCart)
     this.noOfItems = this.itemsInCart.length;
@@ -58,7 +59,7 @@ export class CartItemsComponent implements OnInit {
       currentUser = usersModule.getCurrentUserByEmail(data.email);
      }
     /********** guest users ******/
-    if (!usersModule.isRegisteredUser()) {
+    if (!usersModule.isRegisteredUser(data)) {
       if (data) {
           this.itemsInCart = [];
           this.itemsInCart = data.guest_cart;
@@ -72,9 +73,11 @@ export class CartItemsComponent implements OnInit {
             if ( isPlatformBrowser(this.platformId) ) { 
             this.token = localStorage.getItem('user_token');
             }
+            console.log("user token :: "+ this.token);
             /************* get customer cart ***********/
             this.cartManagementService.getCustomerCart(this.token).subscribe(data => {
               if(data && data.hasOwnProperty('data') && data.data.length > 0 && data.data[0].cart[0] !== null) {
+                console.log("user cart :: "+ data.data[0]);
                 this.itemsInCart = data.data[0].cart;
                 this.setCalculation();
                 if ( isPlatformBrowser(this.platformId) ) {
@@ -102,7 +105,7 @@ export class CartItemsComponent implements OnInit {
      }
     if (this.itemsInCart) {
        this.itemsInCart = this.itemsInCart.filter ( item =>  item.guid !== guid );
-       if (!usersModule.isRegisteredUser()) {
+       if (!usersModule.isRegisteredUser(data)) {
            data.guest_cart = this.itemsInCart ;
            if ( isPlatformBrowser(this.platformId) ) {
            localStorage.setItem('guest_cart', JSON.stringify(this.itemsInCart));
@@ -185,9 +188,9 @@ export class CartItemsComponent implements OnInit {
   /******************** check out options ******/
   checkOutOptions() {
     if ( isPlatformBrowser(this.platformId) ) {
-    if(!usersModule.isRegisteredUser(localStorage.getItem('user_data'))) {
+      let data =  usersModule.getUserData(localStorage.getItem('user_data'));
+    if(!usersModule.isRegisteredUser(data)) {
       $('#checkOutOption').modal('show');
-     
      }else {
       this.router.navigate(['/secure-checkout']);
      }

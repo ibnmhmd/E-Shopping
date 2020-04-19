@@ -1,8 +1,10 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit , PLATFORM_ID , Inject} from '@angular/core';
 import $ from 'jquery/dist/jquery';
 import { Address } from '../interfaces/address.interface';
 import { ActivatedRoute, Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { CartManagementService } from '../services/cart-management.service';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+
 var moment = require('moment');
 declare var require: any;
 const usersModule = require ('../manage-users-cart');
@@ -42,7 +44,8 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
   yearB : Boolean = false;
   date: any ;
   constructor(private route: ActivatedRoute,
-    private router: Router, private cartManagementService: CartManagementService) { }
+    private router: Router, private cartManagementService: CartManagementService,
+     @Inject(PLATFORM_ID) private platformId: Object) { }
 
   ngAfterViewInit(): void {
 
@@ -68,6 +71,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
   }
 
   placeOrder() {
+    console.log("placing ....")
       this.attach();
      /*********validate input ****/
          if (this.cardNumber === ''|| this.cardNumber.length < 12) {
@@ -106,31 +110,36 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
 
         /***************place order ******/
       if (this.card && this.cvvB && this.monthB && this.yearB) {
-        const data = usersModule.getUserData();
-        const currentUser = usersModule.getCurrentUserByEmail(data.email);
-        const users = usersModule.getAllRegisteredUsers() ;
-
-        if (!usersModule.isRegisteredUser()) {
+        let data ;
+        if ( isPlatformBrowser(this.platformId) ) {
+          data = usersModule.getUserData(localStorage.getItem('user_data'));
+        }
+        if (!usersModule.isRegisteredUser(data)) {
            data.guest_cart = [];
-           localStorage.setItem('guest_cart',JSON.stringify(data.guest_cart));
-           localStorage.setItem('user_data', JSON.stringify(data));
+           if ( isPlatformBrowser(this.platformId) ) {     
+             localStorage.setItem('guest_cart',JSON.stringify(data.guest_cart));
+             localStorage.setItem('user_data', JSON.stringify(data));
+           }
            this.detach();
+             $('.trigger').click();
+              this.router.navigate(['/thank-you']);
         }else {
            let body = {'item': [], 'token': ''}, historyBody = {'item':{}, 'token': ''}, token = '';
-           if(localStorage.getItem('user_token')) {
+           if (isPlatformBrowser(this.platformId)){
+            if(localStorage.getItem('user_token')) {
               token = localStorage.getItem('user_token');
+            }
            }
              body.item = [];
              body.token = token;
              historyBody.token = token;
-           
              /************* set current date and time ******/
              this.date = '';
              this.date = moment().format('MMM Do YYYY');
               /****************** get user cart first ******/
              this.cartManagementService.getCustomerCart(token).subscribe(data => {
              if(data && data.hasOwnProperty('data') && data.data.length !== 0 && data.data[0].cart[0] !== null) {
-                
+              
                 Object.keys(data.data[0].cart).map((key, val) => {
                   if(!(data.data[0].cart[val].hasOwnProperty('time'))) {
                     data.data[0].cart[val].time = this.date;
@@ -266,14 +275,15 @@ insertToOrderHistory( body ) {
         this.address = '';
         this.addressMessage = '';
       }, 2000);
+      if ( isPlatformBrowser(this.platformId) ){
       localStorage.setItem('address', JSON.stringify(addressObject));
       if (localStorage.getItem('address')) {
         this.storedAddress = JSON.parse(localStorage.getItem('address'));
       }
-
       this.items = localStorage.getItem('items');
       this.VAT = localStorage.getItem('VAT');
       this.grandTotal = localStorage.getItem('grandTotal');
+     }
     }
     $('#loading').hide();
   }
@@ -299,15 +309,17 @@ insertToOrderHistory( body ) {
   }
   ngOnInit() {
      this.showAddressSet = false ;
-    if(null !== localStorage.getItem('address') && 'null' !== localStorage.getItem('address')) {
-        this.storedAddress = JSON.parse(localStorage.getItem('address'));
-        this.showAddressSet = true ;
-        this.items = localStorage.getItem('items');
-        this.VAT = localStorage.getItem('VAT');
-        this.grandTotal = localStorage.getItem('grandTotal');
-      }else {
-        this.showAddressSet = false ;
-      }
+     if ( isPlatformBrowser(this.platformId) ){
+        if(null !== localStorage.getItem('address') && 'null' !== localStorage.getItem('address')) {
+            this.storedAddress = JSON.parse(localStorage.getItem('address'));
+            this.showAddressSet = true ;
+            this.items = localStorage.getItem('items');
+            this.VAT = localStorage.getItem('VAT');
+            this.grandTotal = localStorage.getItem('grandTotal');
+          }else {
+            this.showAddressSet = false ;
+          }
+        }
   }
 
   attach() {
