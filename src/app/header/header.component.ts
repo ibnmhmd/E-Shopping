@@ -95,7 +95,11 @@ export class HeaderComponent implements OnInit {
 
                   this.user = this.getFirstName(userName);
                   /************** if registered but not returning user ***/
-                  if('Returning' !== localStorage.getItem('userMode')) {
+                  let userMode = "";
+                  if (isPlatformBrowser(this.platformId)) {
+                     userMode = localStorage.getItem('userMode');
+                  }
+                  if('Returning' !== userMode ) {
                     const user_data = {
                        'session' : 'loggedIn',
                        'mode': 'registered',
@@ -223,7 +227,8 @@ logoutUser() {
     setTimeout(() => {
       /*********** guest cart count *****/
       if ( isPlatformBrowser(this.platformId) ){
-        if (!usersModule.isRegisteredUser(localStorage.getItem('user_data'))) {
+         
+        if (!usersModule.isRegisteredUser(data)) {
           if (data.guest_cart ) {
              this.counter = data.guest_cart.length;
            }else {
@@ -235,6 +240,7 @@ logoutUser() {
                token = localStorage.getItem('user_token');
             }
             this.cartManagementService.getCustomerCart(token).subscribe( payLoad => {
+              console.log("user cart :::"+ payLoad.data[0].cart[0])
               if ( payLoad && payLoad.hasOwnProperty('data') && payLoad.data.length > 0) {
                 if ( payLoad.data[0].cart.length > 0 && payLoad.data[0].cart[0] !== null) {
                   this.counter = payLoad.data[0].cart.length;

@@ -97,7 +97,7 @@ export class ProductViewComponent implements OnInit {
         let currentUser ;
     /*********** extract the old values in the storage and append the new ones  ****/
     let _extract_data = [];
-    if (!usersModule.isRegisteredUser()) {
+    if (!usersModule.isRegisteredUser(data)) {
         _extract_data = data.guest_cart ;
         _extract_data = _extract_data.filter (object => object.guid !== this.fetchedData.guid );
        this.fetchedData['quantity'] = this.selectedQty;
@@ -112,7 +112,11 @@ export class ProductViewComponent implements OnInit {
     
     }else {
         this.fetchedData['quantity'] = this.selectedQty;
-        let token = localStorage.getItem('user_token'), body = {'item': {} , 'token': ''};
+        let token = "";
+        if ( isPlatformBrowser(this.platformId) ) {
+          token = localStorage.getItem('user_token');
+        }
+        let body = {'item': {} , 'token': ''};
         body.item = this.fetchedData;
         body.token = token;
         /****************** get user cart first ******/
