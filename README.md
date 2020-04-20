@@ -1,4 +1,6 @@
-# ShoppingCart
+# Shopping Cart (MEAN Stack eShop) 
+### Full description is at [learn more](https://ibnmhmd.github.io/E-Shopping/) 
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.5 and developed with latest angular version `Angular 5` .
 
