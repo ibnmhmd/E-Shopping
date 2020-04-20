@@ -1,4 +1,4 @@
-# ShoppingCart (MEAN Stack eShop) 
+# Shopping Cart (MEAN Stack eShop) 
 ### Full description is at [learn more](https://ibnmhmd.github.io/E-Shopping/) 
 
 
