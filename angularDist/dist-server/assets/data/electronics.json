@@ -1,0 +1,103 @@
+{
+    "electronics": [    
+      {
+         "guid": "EL-XMD010",
+          "cat_id": 4,
+          "cat_title": "iPhone 6",
+          "router": "iphone 6",
+          "img": "../assets/img/recommendations/big/iphone6.jpg",
+          "thumbnail_img":"../assets/img/recommendations/small/iphone6.jpg",
+           "price": 1350,
+           "quantity": 8,
+           "category": "electronics"
+      },
+      {
+         "guid": "EL-XMD011",
+          "cat_id": 5,
+          "cat_title": "Galaxy Note 4",
+          "router": "mak-book",
+          "img": "../assets/img/recommendations/big/note4.jpg",
+          "thumbnail_img":"../assets/img/recommendations/small/note4.jpg",
+           "price": 3800,
+           "quantity": 8,
+           "category": "electronics"
+      },
+      {
+         "guid": "EL-XMD012",
+          "cat_id": 6,
+          "cat_title": "Samsung",
+          "router": "mak-book",
+          "img": "../assets/img/recommendations/big/samsung.jpg",
+          "thumbnail_img":"../assets/img/recommendations/small/samsung.jpg",
+           "price": 1340,
+           "quantity": 8,
+           "category": "electronics"
+      },
+      {
+         "guid": "EL-XMD013",
+          "cat_id": 7,
+          "cat_title": "Sony Camera",
+          "router": "mak-book",
+          "img": "../assets/img/recommendations/big/son.jpg",
+          "thumbnail_img":"../assets/img/recommendations/small/son.jpg",
+           "price": 2500,
+           "quantity": 8,
+           "category": "electronics"
+      },
+      {
+          "guid": "EL-XMD007",
+          "cat_id": 1,
+          "cat_title": "PS4 Controller",
+          "router": "game",
+          "img": "../assets/img/recommendations/big/game.jpg",
+          "thumbnail_img":"../assets/img/recommendations/small/game.jpg",
+          "price": 150,
+          "quantity": 5,
+          "category": "electronics"
+      },
+      {
+        "guid": "EL-XMD008",
+          "cat_id": 2,
+          "cat_title": "Controllers With Dual Shock",
+          "router": "ps4-dual-shock",
+          "img": "../assets/img/recommendations/big/gaming.jpg",
+          "thumbnail_img":"../assets/img/recommendations/small/gaming.jpg",
+           "price": 170,
+           "quantity": 3,
+           "category": "electronics"
+      }, 
+      {
+         "guid": "EL-XMD014",
+          "cat_id": 8,
+          "cat_title": "Sony Camera HD",
+          "router": "mak-book",
+          "img": "../assets/img/recommendations/big/sony-camera.jpg",
+          "thumbnail_img":"../assets/img/recommendations/small/sony-camera.jpg",
+           "price": 3000,
+           "quantity": 8,
+           "category": "electronics"
+      },
+      {
+         "guid": "EL-XMD014",
+          "cat_id": 9,
+          "cat_title": "Canon Camera",
+          "router": "mak-book",
+          "img": "../assets/img/recommendations/small/camera.jpg",
+          "thumbnail_img":"../assets/img/recommendations/big/camera.jpg",
+           "price": 3000,
+           "quantity": 8,
+           "category": "electronics"
+      },
+      {
+         "guid": "EL-XMD009",
+          "cat_id": 3,
+          "cat_title": "Mack Book Pro",
+          "router": "mak-book",
+          "img": "../assets/img/recommendations/big/mac.jpg",
+          "thumbnail_img":"../assets/img/recommendations/small/mac.jpg",
+           "price": 6000,
+           "quantity": 8,
+           "category": "electronics"
+      }
+    ]
+  }

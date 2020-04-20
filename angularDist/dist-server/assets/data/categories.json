@@ -1,0 +1,55 @@
+{
+    "categories": [
+      {
+          "cat_id": 1,
+          "cat_title": "Mens Wear",
+          "router": "men"
+      },
+      {
+          "cat_id": 2,
+          "cat_title": "Electronics",
+          "router": "electronics"
+      },
+      {
+          "cat_id": 3,
+          "cat_title": "Kids Wear",
+          "router": "kids"
+      },
+      {
+          "cat_id": 4,
+          "cat_title": "Womens Wear",
+          "router": "women"
+      }
+      ,
+      {
+          "cat_id": 5,
+          "cat_title": "Home Appliances",
+          "router": "home-appliances"
+      },
+      {
+          "cat_id": 6,
+          "cat_title": "Furniture",
+          "router": "furniture"
+      },
+      {
+          "cat_id": 7,
+          "cat_title": "Football",
+          "router": "football"
+      },
+      {
+          "cat_id": 8,
+          "cat_title": "Basket Ball",
+          "router": "basket-ball"
+      },
+      {
+          "cat_id": 9,
+          "cat_title": "Voley Ball",
+          "router": "voley"
+      },
+      {
+          "cat_id": 10,
+          "cat_title": "Tenis",
+          "router": "tenis"
+      }
+    ]
+  }
