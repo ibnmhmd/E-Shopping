@@ -17,7 +17,7 @@ It's a complete shopping cart project with the following functionalities :-
 
 Clone the project and run `npm install` on the project folder, after successful installation run `npm run serve:universal` after successful build run `node server.js` Navigate to `http://localhost:3000/`.
 you can Similarly see the live version here `http://mini-com.herokuapp.com/ or https://ibnmhmd.github.io/Shopping-Cart` (non SEO friendly) and
-`https://shoppify.herokuapp.com/` (SEO friendly implemented with SSR but temporarily down).
+`https://mini-eshop.herokuapp.com/` (SEO friendly implemented with SSR).
 
 ## Code scaffolding
 
