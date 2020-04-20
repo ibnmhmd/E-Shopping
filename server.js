@@ -29,14 +29,9 @@ app.set('views', './dist');
 // API location
 app.use('/', api);
 
-app.use(express.static(__dirname+'/dist', {index: false}));
-//app.use('/', express.static('./', {index: false}));
-app.get('*', (req, res) => {
-  //res.sendFile(path.join(__dirname + '/dist/index.html'));
-  res.render('index', {
-    req,
-    res
-  });
+app.use(express.static(path.join(__dirname, './dist'), {index: false}));
+app.get('/*', function(req,res) {   
+res.sendFile(path.join(__dirname+'/dist/index.html'));
 });
 
 

@@ -9,9 +9,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:universal": "ng build --aot --prod && ng build --prod --app 1 --output-hashing=false",
+    "build:universal": "ng build --aot -prod && ng build --prod --app 1 --output-hashing=false",
     "serve:universal": "npm run build:universal",
-    "postinstall": "npm run serve:universal",
+    "postinstall": "ng build --aot -prod",
     "deploy": "git push heroku master"
   },
   "private": true,
