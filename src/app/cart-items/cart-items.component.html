@@ -5,7 +5,7 @@
             <app-product-category></app-product-category>
                   <div class="col-xs-12 col-sm-8 col-lg-8">
                         <div *ngIf="noItems" class="alert alert-danger">
-                            <strong>OOPS ! No Items Added To The Cart. </strong>
+                            <strong>No item(s) added to the cart !</strong>
                         </div>
                         <a *ngIf="noItems" class="btn btn-block btn-warning" routerLink = '/'>Shop Now</a>
                         <div *ngIf="itemRemoved" class="alert alert-success">
