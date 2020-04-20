@@ -1,0 +1,103 @@
+{
+    "men": [
+      {
+          "guid": "AX-M0000",
+          "cat_id": 1,
+          "cat_title": "Armani Brown Belt",
+          "router": "armani_belt",
+          "img": "../assets/img/mens/big/belt.jpg",
+          "thumbnail_img":"../assets/img/mens/thumbnail/belt.jpg",
+          "price": 120,
+          "quantity": 5,
+          "category": "men"
+      },
+      {  
+        "guid": "AX-M0001",
+        "cat_id": 2,
+        "cat_title": "Jox Shoes",
+        "router": "jox-shoes",
+        "img": "../assets/img/mens/big/boots.jpg",
+        "thumbnail_img":"../assets/img/mens/thumbnail/boots.jpg",
+        "price": 300,
+        "quantity": 3,
+        "category": "men"
+      },
+      {   
+        "guid": "AX-M0002", 
+        "cat_id": 3,
+        "cat_title": "Collections",
+        "router": "belt-shoes",
+        "img": "../assets/img/mens/big/collections.jpg",
+        "thumbnail_img":"../assets/img/mens/thumbnail/collections.jpg",
+        "price": 500,
+        "quantity": 8,
+        "category": "men"
+      }, {
+        "guid": "AX-M0003",
+        "cat_id": 4,
+        "cat_title": "Turkish Suit",
+        "router": "t-suit",
+        "img": "../assets/img/mens/big/suite.jpg",
+        "thumbnail_img":"../assets/img/mens/thumbnail/suite.jpg",
+        "price": 1500,
+        "quantity": 5,
+        "category": "men"
+     } ,
+     {
+        "guid": "AX-M0004",
+        "cat_id": 5,
+        "cat_title": "Adidas Running",
+        "router": "adidas-running",
+        "img": "../assets/img/mens/big/running.jpg",
+        "thumbnail_img":"../assets/img/mens/thumbnail/running.jpg",
+        "price": 300,
+        "quantity": 5,
+        "category": "men"
+     },
+      { 
+        "guid": "AX-M0005",
+        "cat_id": 6,
+        "cat_title": "Watch",
+        "router": "watch",
+        "img": "../assets/img/mens/big/watch.jpg",
+        "thumbnail_img":"../assets/img/mens/thumbnail/watch.jpg",
+        "price": 300,
+        "quantity": 5,
+        "category": "men"
+      },
+      {  
+        "guid": "AX-M0006",
+        "cat_id": 7,
+        "cat_title": "Aldo Jacket",
+        "router": "aldo-jacket",
+        "img": "../assets/img/mens/big/jacket.jpg",
+        "thumbnail_img":"../assets/img/mens/thumbnail/jacket.jpg",
+        "price": 400,
+        "quantity": 5,
+        "category": "men"
+     },
+     {
+        "guid": "AX-M0007",
+        "cat_id": 8,
+        "cat_title": "Shirt",
+        "router": "shirt",
+        "img": "../assets/img/mens/big/shirt.jpg",
+        "thumbnail_img":"../assets/img/mens/thumbnail/shirt.jpg",
+        "price": 1500,
+        "quantity": 3,
+        "category": "men"
+     },
+     {
+        "guid": "AX-M0008",
+        "cat_id": 9,
+        "cat_title": "Shirts Collection ",
+        "router": "shirts",
+        "img": "../assets/img/mens/big/shirts.jpg",
+        "thumbnail_img":"../assets/img/mens/thumbnail/shirts.jpg",
+        "price": 300,
+        "quantity": 2,
+        "category": "men"
+     }
+
+    ]
+  }

@@ -1,0 +1,37 @@
+{
+    "recommendations": [
+      {
+          "guid": "EL-XMD007",
+          "cat_id": 1,
+          "cat_title": "PS4 Controller",
+          "router": "game",
+          "img": "../assets/img/recommendations/big/game.jpg",
+          "thumbnail_img":"../assets/img/recommendations/small/game.jpg",
+          "price": 150,
+          "quantity": 5,
+          "category": "electronics"
+      },
+      {
+        "guid": "EL-XMD008",
+          "cat_id": 2,
+          "cat_title": "Controllers With Dual Shock",
+          "router": "ps4-dual-shock",
+          "img": "../assets/img/recommendations/big/gaming.jpg",
+          "thumbnail_img":"../assets/img/recommendations/small/gaming.jpg",
+           "price": 170,
+           "quantity": 3,
+           "category": "electronics"
+      },
+      {
+         "guid": "EL-XMD009",
+          "cat_id": 3,
+          "cat_title": "Mack Book Pro",
+          "router": "mak-book",
+          "img": "../assets/img/recommendations/big/mac.jpg",
+          "thumbnail_img":"../assets/img/recommendations/small/mac.jpg",
+           "price": 6000,
+           "quantity": 8,
+           "category": "electronics"
+      }
+    ]
+  }
