@@ -12,7 +12,7 @@ const { platformServer, renderModuleFactory } = require('@angular/platform-serve
 const { ngExpressEngine } = require('@nguniversal/express-engine');
 // Import the AOT compiled factory for your AppServerModule.
 // This import will change with the hash of your built server bundle.
-const { AppServerModuleNgFactory } = require(__dirname+'/dist/dist-server/main.bundle');
+const { AppServerModuleNgFactory } = require('./angularDist/dist-server/main.bundle');
 const app = express();
 const port = process.env.PORT || 3000;
 const baseUrl = `http://localhost: ${port}`;
