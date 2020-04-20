@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit , PLATFORM_ID , Inject } from '@angular/core';
 import { ActivatedRoute, Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { Categories } from '../enum/categories.enum';
 import { ShoppingCategoryServiceService } from '../services/shopping-categories.service';
@@ -6,6 +6,7 @@ import { CartManagementService } from '../services/cart-management.service';
 import $ from 'jquery/dist/jquery';
 import { FormsModule } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 
 declare var require: any;
 
@@ -35,7 +36,7 @@ itemAdded: Boolean = false ;
     private router: Router,
     private shoppingCategories: ShoppingCategoryServiceService,
     private cartManagementService :CartManagementService,
-  private meta: Meta, private title: Title) {
+  private meta: Meta, private title: Title, @Inject(PLATFORM_ID) private platformId: Object) {
 
     // Sets the <title></title>
     title.setTitle('Shopping Cart: Product full view');
@@ -97,21 +98,23 @@ addToCart() {
      this.detach();
    }else {
       /******************** starts ******/
-
-      const data = usersModule.getUserData();
-      console.log(data);
-      const users = usersModule.getAllRegisteredUsers() ;
-      let currentUser ;
+      let data;
+      if ( isPlatformBrowser(this.platformId) ) {
+          data = usersModule.getUserData(localStorage.getItem('user_data'));
+       }
      /*********** extract the old values in the storage and append the new ones  ****/
      let _extract_data = [];
-      if(!usersModule.isRegisteredUser()) {
+      if(!usersModule.isRegisteredUser(data)) {
         _extract_data = data.guest_cart ? data.guest_cart : new Array();
         _extract_data = _extract_data.filter (object => object.guid !== this.slicedObject.guid );
         this.slicedObject['quantity'] = this.selectedValue;
         _extract_data.unshift(this.slicedObject);
         data.guest_cart = _extract_data ;
-        localStorage.setItem('guest_cart', JSON.stringify(_extract_data ));
-        localStorage.setItem('user_data', JSON.stringify(data));
+        if ( isPlatformBrowser(this.platformId) ) {
+          localStorage.setItem('guest_cart', JSON.stringify(_extract_data ));
+          localStorage.setItem('user_data', JSON.stringify(data));
+         }
+        
         this.itemAddedToCart();
      }else {
          this.slicedObject['quantity'] = this.selectedValue;

@@ -103,24 +103,30 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.detach();
     }else {
         /******************** starts ******/
-        const data = usersModule.getUserData();
-        const users = usersModule.getAllRegisteredUsers() ;
-        let currentUser ;
+        let data ;
+        if ( isPlatformBrowser(this.platformId) ) {
+           data = usersModule.getUserData(localStorage.getItem('user_data'));
+         }
     /*********** extract the old values in the storage and append the new ones  ****/
     let _extract_data = [];
-    if (!usersModule.isRegisteredUser()) {
-       _extract_data = data.guest_cart ;
+    if (!usersModule.isRegisteredUser(data)) {
+       _extract_data = data.guest_cart ? data.guest_cart : [] ;
        _extract_data = _extract_data.filter (object => object.guid !== this.fetchedData.guid );
        this.fetchedData['quantity'] = this.selectedQty;
        _extract_data.unshift(this.fetchedData);
        data.guest_cart = _extract_data ;
-       localStorage.setItem('guest_cart', JSON.stringify(_extract_data ));
-       localStorage.setItem('user_data', JSON.stringify(data));
+       if ( isPlatformBrowser(this.platformId) ) {
+        localStorage.setItem('guest_cart', JSON.stringify(_extract_data ));
+        localStorage.setItem('user_data', JSON.stringify(data));
+       }
        this.itemAddedToCart();
     
     }else {
         this.fetchedData['quantity'] = this.selectedQty;
-        let token = localStorage.getItem('user_token'), body = {'item': {} , 'token': ''};
+        let token , body = {'item': {} , 'token': ''};
+        if ( isPlatformBrowser(this.platformId) ) {
+            token = localStorage.getItem('user_token');
+        }
         body.item = this.fetchedData;
         body.token = token;
         /****************** get user cart first ******/
