@@ -14,7 +14,7 @@ const { ngExpressEngine } = require('@nguniversal/express-engine');
 // This import will change with the hash of your built server bundle.
 const { AppServerModuleNgFactory } = require(`./dist/dist-server/main.bundle`);
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 const baseUrl = `http://localhost:${port}`;
 // Parsers
 app.use(bodyParser.json());
@@ -29,9 +29,9 @@ app.set('views', './dist');
 // API location
 app.use('/', api);
 
-app.use(express.static(path.join(__dirname, './dist'), {index: false}));
+app.use(express.static(__dirname+'/dist', {index: false}));
 //app.use('/', express.static('./', {index: false}));
-app.get('/*', (req, res) => {
+app.get('*', (req, res) => {
   //res.sendFile(path.join(__dirname + '/dist/index.html'));
   res.render('index', {
     req,
@@ -55,7 +55,7 @@ const forceSSL = function() {
   // middleware
 app.use(forceSSL());
 
-app.listen( port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`Listening at ${baseUrl}`);
 });
 
